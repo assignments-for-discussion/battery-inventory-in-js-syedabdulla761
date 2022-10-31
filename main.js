@@ -1,11 +1,16 @@
 const assert = require('assert');
 
 function countBatteriesByUsage(cycles) {
-  return {
-    lowCount: 0,
-    mediumCount: 0,
-    highCount: 0
-  };
+  cycles.sort(function(a,b){return a-b});           //sorting so it can be applied also for an unsorted given input
+    let count={                                     //declaring and initializing an object count
+        lowCount:0,
+        mediumCount:0,
+        highCount:0
+    };
+    cycles.map(a=>a<410?count["lowCount"]++:        //increments the property values of the object based on input elements of the given array 
+    (410<a && a<950)?count["mediumCount"]++:
+    count["highCount"]++);
+  return count;                                     //returns the object
 }
 
 function testBucketingByNumberOfCycles() {
